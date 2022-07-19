@@ -93,6 +93,8 @@ public class SetMatrixZeroes {
         }
     }
 
+    //T.C. : 2O(m*n) as we're traversing the matrix twice
+    //S.C. : O(1)
     public static void setZeroesOptimal(int[][] matrix){
         boolean colFlag=true;
         for(int i=0; i<matrix.length; i++){
