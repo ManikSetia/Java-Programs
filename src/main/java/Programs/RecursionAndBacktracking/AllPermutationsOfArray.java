@@ -1,6 +1,8 @@
 package Programs.RecursionAndBacktracking;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class AllPermutationsOfArray {
@@ -12,6 +14,7 @@ public class AllPermutationsOfArray {
 //        printAllPermutations(result, dataStructure, frequency, nums);
 //        return result;
 //    }
+
 
     //Better Approach
     public static List<List<Integer>> permute(int[] nums){
@@ -68,8 +71,18 @@ public class AllPermutationsOfArray {
     }
 
     public static void main(String[] args) {
-        int[] nums={1, 2, 3};
+        int[] nums={3, 2, 1};
+        int[] arr={1, 2, 3};
         List<List<Integer>> result=permute(nums);
         System.out.println(result);
+        int count=0;
+
+        for(List<Integer> list: result){
+            for(int i=0; i<arr.length; i++){
+                if(list.get(i)==arr[i]) count++;
+                if(count==arr.length) System.out.println("result.indexOf(list) = " + result.indexOf(list));
+            }
+        }
+
     }
 }
