@@ -58,16 +58,32 @@ public class RotateMatrix {
         }
     }
 
+    //T.C. : O(n2)
+    //S.C. : O(1)
+    public static void rotateMatrixClockwise90Better(int[][] matrix){
+        int n=matrix.length;
+        for(int i=0; i<n/2; i++){//for layer by layer traversal
+            for(int j=i; j<n-1-i; j++){//for traversal in a layer
+                int temp=matrix[i][j];
+                matrix[i][j]=matrix[n-1-j][i];
+                matrix[n-1-j][i]=matrix[n-1-i][n-1-j];
+                matrix[n-1-i][n-1-j]=matrix[j][n-1-i];
+                matrix[j][n-1-i]=temp;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int[][] matrix={
-                {5,1,9,11},
-                {2,4,8,10},
-                {13,3,6,7},
-                {15,14,12,16}
+                {1,2,3},
+                {4,5,6},
+                {7,8,9}
         };
         System.out.println("Before rotation: ");
         print(matrix);
-        rotateMatrixClockwise90(matrix);
+//        rotateMatrixClockwise90(matrix);
+
+        rotateMatrixClockwise90Better(matrix);
 
 //        rotateMatrixAntiClockwise90(matrix);
         System.out.println("After rotation: ");
