@@ -38,16 +38,42 @@ public class MergeSortedArrays2 {
         while(i<n) nums2[i++]=result[k++];
     }
 
+    //Approach2: Kind of Insertion sort
+    //S.C. : O(1)
+    //T.C. : O(m*n) //O(m) for traversal of nums1 and O(n) for reordering of nums2
     public static void mergeBetter(int[] nums1, int[] nums2){
+        int i=0, j=0;
+        int m=nums1.length, n=nums2.length;
+        while(i<m && j<n){
+            if(nums1[i]<=nums2[j]) i++;
+            else{
+                int temp=nums1[i];
+                nums1[i]=nums2[j];
+                nums2[j]=temp;
 
+                //Now, we've to reorder the elements in nums2
+                int first=nums2[0];
+                int k;
+                for(k=1; k<n && nums2[k]<first; k++){
+                    nums2[k-1]=nums2[k];
+                }
+                nums2[k-1]=first;
+            }
+        }
     }
 
+    //GAP method (kind of shell sorting)
+    public static void mergeOptimal(int[] nums1, int[] nums2){
+
+
+    }
 
     public static void main(String[] args) {
         int[] nums1 = {1, 4, 7, 8, 10};
         int[] nums2 = {2, 3, 9};
 //        merge(nums1, nums2);
-        mergeBetter(nums1, nums2);
+//        mergeBetter(nums1, nums2);
+        mergeOptimal(nums1, nums2);
         System.out.println("After sorting, num1: "+Arrays.toString(nums1));
         System.out.println("After sorting, num1: "+Arrays.toString(nums2));
     }    
