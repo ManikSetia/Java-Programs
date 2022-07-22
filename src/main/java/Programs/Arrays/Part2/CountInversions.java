@@ -11,7 +11,6 @@ public class CountInversions {
                 if(arr[i]>arr[j]) count++;
             }
         }
-
         return count;
     }
 
