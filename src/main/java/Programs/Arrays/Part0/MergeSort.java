@@ -1,2 +1,4 @@
-package Programs.Arrays.Part0;public class MergeSort {
+package Programs.Arrays.Part0;
+
+public class MergeSort {
 }

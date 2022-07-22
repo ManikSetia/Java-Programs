@@ -1,2 +1,4 @@
-package Programs.Arrays.Part0;public class BinarySearch {
+package Programs.Arrays.Part0;
+
+public class BinarySearch {
 }

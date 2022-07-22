@@ -1,2 +1,4 @@
-package Programs.Arrays.Part0;public class SelectionSort {
+package Programs.Arrays.Part0;
+
+public class SelectionSort {
 }
