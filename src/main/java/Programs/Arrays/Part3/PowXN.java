@@ -12,7 +12,26 @@ public class PowXN {
 //        return 1/result;
 
 
-        return Math.pow(x, n);
+//        return Math.pow(x, n);
+
+
+        double ans=1;
+        long m=n;
+        if(m<0) m *= -1;
+        while(m>0){
+            if((m&1)==1){
+                //odd
+                ans *= x;
+                m -= 1;
+            }
+            else{
+                x *= x;
+                m /= 2;
+            }
+        }
+
+        if(n<0) return 1/ans;
+        return ans;
     }
 
     public static void main(String[] args) {
