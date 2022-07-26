@@ -18,12 +18,24 @@ public class UniquePaths {
 //        return uniquePathsRecursive(m ,n, 0, 0);
 
         //Approach2
-        int[][] dp=new int[m][n];
-        //filling dp initially with -1
-        for(int i=0; i<m; i++){
-            for(int j=0; j<n; j++) dp[i][j]=-1;
+//        int[][] dp=new int[m][n];
+//        //filling dp initially with -1
+//        for(int i=0; i<m; i++){
+//            for(int j=0; j<n; j++) dp[i][j]=-1;
+//        }
+//        return uniquePathsDp(m, n, 0, 0, dp);
+
+
+        //Approach3
+        //T.C. : O(m-1) or O(n-1)
+        //S.C. : O(1)
+        int N=(m+n-2);
+        int R=m-1;
+        double result=1;
+        for(int i=1; i<=R; i++){//for denominator, no. from 1 to R
+            result = result * (N-R+i)/i;
         }
-        return uniquePathsDp(m, n, 0, 0, dp);
+        return (int)result;
     }
 
     //T.C. : O(m*n)
@@ -38,8 +50,10 @@ public class UniquePaths {
         return dp[i][j]=uniquePathsDp(m, n, i+1, j, dp)+uniquePathsDp(m, n, i, j+1, dp);
     }
 
+
+
     public static void main(String[] args) {
-        int m=3, n=7;
+        int m=3, n=2;
         int result=uniquePaths(m, n);
         System.out.println(result);
     }
