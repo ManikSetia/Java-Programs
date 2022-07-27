@@ -8,6 +8,8 @@
 package Programs.Arrays.Part4;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TwoSum {
 
@@ -24,11 +26,25 @@ public class TwoSum {
         return result;
     }
 
+    private static int[] twoSumBetter(int[] nums, int target){
+        int[] result=new int[2];
+        Map<Integer, Integer> map=new HashMap<>();
+        for(int i=0; i<nums.length; i++) {
+            if (map.containsKey(target - nums[i])) {
+                result[0] = i;
+                result[1] = map.get(target - nums[i]);
+                return result;
+            }
+            map.put(nums[i], i);
 
+        }
+        return result;
+    }
 
     public static void main(String[] args) {
-        int[] nums={3,3};
-        int[] result=twoSum(nums, 6);
+        int[] nums={2,7,11,5};
+//        int[] result=twoSum(nums, 6);
+        int[] result=twoSumBetter(nums, 9);
         System.out.println(Arrays.toString(result));
     }
 }
