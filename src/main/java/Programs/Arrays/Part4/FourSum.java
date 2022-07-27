@@ -98,6 +98,7 @@ public class FourSum {
                         else{
                             result.add(Arrays.asList(nums[low], nums[high], nums[i], nums[j]));
 
+                            //to avoid duplicates
                             while(low<high && nums[low]==nums[low+1]) low++;
                             while(low<high && nums[high]==nums[high-1]) high--;
 
@@ -105,9 +106,12 @@ public class FourSum {
                         }
                     }
 
+                    //to avoid duplicates
                     while(j<nums.length-1 && nums[j]==nums[j+1]) j++;
 
                 }
+
+                //to avoid duplicates
                 while(i< nums.length-1 && nums[i]==nums[i+1]) i++;
 
 
