@@ -29,7 +29,6 @@ public class ThreeSum {
         return result;
     }
 
-
     //T.C. : O(n2logm)//logm is insertion time for set
     //S.C. : O(m)+O(n)//for set and map
     private static List<List<Integer>> threeSumBetter(int[] nums){
@@ -73,10 +72,47 @@ public class ThreeSum {
         return result;
     }
 
+    //Two pointer
+    //T.C. : O(n2)
+    //S.C. : O(1)
+    private static List<List<Integer>> threeSumOptimal(int[] nums){
+        List<List<Integer>> result=new ArrayList<>();
+        Arrays.sort(nums);
+
+        for(int i=0; i<nums.length-2; i++){
+            int low=i+1, high=nums.length-1;
+            int target=-nums[i];
+
+            if(i==0 || (i>0 && nums[i]!=nums[i-1])){
+                while(low<high){
+                    int sum=nums[low]+nums[high];
+                    if(sum<target) low++;
+                    else if(sum>target) high--;
+                    else{
+                        //we found the triplet
+                        result.add(Arrays.asList(nums[i], nums[low], nums[high]));
+
+                        //Now is the trick part
+                        //Since we've sorted the array and if the array contains duplicate elements then those elements will be together in the array. And we want unique triplets so we don't want to store them.
+                        while(low<high && nums[low]==nums[low+1]) low++;
+                        while(low<high && nums[high]==nums[high-1]) high--;
+
+                        low++;
+                        high--;
+                    }
+                }
+            }
+
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         int[] nums={-1,0,1,2,-1,-4};
 //        List<List<Integer>> result=threeSum(nums);
-        List<List<Integer>> result=threeSumBetter(nums);
+//        List<List<Integer>> result=threeSumBetter(nums);
+        List<List<Integer>> result=threeSumOptimal(nums);
         System.out.println(result);
     }
 }
