@@ -126,6 +126,8 @@ public class LongestSubstringWithoutRepeatingCharacters {
     }
 
     //T.C. : O(2n), n for right pointer and second n for left pointer
+    //Ex: a b c d e e f g
+    //When right is at second e, then left has to traverse all the elements from a to e
     public static int lengthOfLongestSubstringBetter(String s){
         int res=0;
         int left=0, right=0;
@@ -149,6 +151,28 @@ public class LongestSubstringWithoutRepeatingCharacters {
         return res;
     }
 
+    //Now we've to optimise the above approach. Consider the example given in the above approach, there our motive is to remove
+    //e so we've to do something so that we can directly jump our left pointer to that particular position instead of traversing all of the elements
+    //Solution is to use map and maintain the index of every element
+    //T.C. : O(n)
+    public static int lengthOfLongestSubstringOptimal(String s){
+        int res=0;
+
+        Map<Character, Integer> map=new HashMap<>();
+
+        int left=0, right=0;
+
+        while(right<s.length()){
+            if(map.containsKey(s.charAt(right))){
+                left=Math.max(left, map.get(s.charAt(right))+1);
+            }
+            res=Math.max(res, right-left+1);
+            map.put(s.charAt(right), right);
+            right++;
+        }
+
+        return res;
+    }
 
 
     public static void main(String[] args) {
