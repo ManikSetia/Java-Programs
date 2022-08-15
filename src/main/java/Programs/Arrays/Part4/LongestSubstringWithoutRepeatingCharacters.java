@@ -110,6 +110,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
     }
 
    //Approach1: Generate all substrings
+    //T.C. : O(n3) S.C. : O(1)
     public static int lengthOfLongestSubstring(String s){
         int maxLen=0;
         for(int i=0; i<s.length(); i++){
@@ -124,9 +125,37 @@ public class LongestSubstringWithoutRepeatingCharacters {
         return maxLen;
     }
 
+    //T.C. : O(2n), n for right pointer and second n for left pointer
+    public static int lengthOfLongestSubstringBetter(String s){
+        int res=0;
+        int left=0, right=0;
+
+        Set<Character> set=new HashSet<>();
+        while(right<s.length()){
+            if(!set.contains(s.charAt(right))){
+                //unique element, compute length
+                res=Math.max(res, right-left+1);
+            }
+            else{
+                //move left until the element at right is not present in the set
+                while(set.contains(s.charAt(right))){
+                    set.remove(s.charAt(left));
+                    left++;
+                }
+            }
+            set.add(s.charAt(right));
+            right++;
+        }
+        return res;
+    }
+
+
+
     public static void main(String[] args) {
         String s="abcabcbb";
-        int result=lengthOfLongestSubstring(s);
+//        int result=lengthOfLongestSubstring(s);
+//        int result=lengthOfLongestSubstringBetter(s);
+        int result=lengthOfLongestSubstringOptimal(s);
         System.out.println(result);
     }
 }
